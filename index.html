@@ -28,13 +28,13 @@
       background: linear-gradient(90deg, #FFD700, #FFF3A0, #FFD700);
       color: #333;
       font-weight: bold;
-      font-size: 1.3rem;
+      font-size: 1.2rem;
       padding: 12px 0;
       text-align: center;
       position: fixed;
       top: 0;
       left: 0;
-      z-index: 999;
+      z-index: 9999;
       box-shadow: 0 3px 10px rgba(0,0,0,0.1);
       letter-spacing: 1px;
       overflow: hidden;
@@ -63,15 +63,15 @@
 
     @keyframes pulse {
       0%,100% { transform: scale(1); }
-      50% { transform: scale(1.1); }
+      50% { transform: scale(1.08); }
     }
 
-    /* empurrar conteúdo */
+    /* ajuste mínimo */
     .container {
       margin-top: 70px;
     }
 
-    /* ===== SEU CSS ORIGINAL (NÃO ALTERADO) ===== */
+    /* ===== SEU CSS ORIGINAL ===== */
 
     .stars {
       position: fixed;
@@ -111,8 +111,14 @@
     }
 
     @keyframes slideDown {
-      from { opacity: 0; transform: translateY(-30px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     h1 {
@@ -128,12 +134,17 @@
       color: #2a7ab8;
       font-weight: 500;
       margin-bottom: 20px;
+      animation: fadeIn 1s ease-out 0.3s both;
     }
 
-    /* ==== TODO RESTO DO SEU CSS SEGUE IGUAL ==== */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* ===== TODO O RESTO DO SEU CSS CONTINUA IGUAL (não alterado) ===== */
   </style>
 </head>
-
 <body>
 
 <!-- FAIXA -->
@@ -141,30 +152,29 @@
   <span>Sabrina ✨</span>
 </div>
 
-<!-- SEU SITE ORIGINAL CONTINUA AQUI -->
+<!-- Constelação -->
 <div class="stars" id="constellation"></div>
 
 <div class="container">
-
   <header>
     <h1>Você é Mais Forte do Que Imagina 💖</h1>
     <p class="subtitle">Você não está sozinha nessa jornada</p>
   </header>
 
-  <!-- CARROSSEL ORIGINAL -->
+  <!-- CARROSSEL ORIGINAL (mantido) -->
   <div class="carousel-container">
     <div class="carousel">
       <div class="carousel-slide active">
-        <img src="WhatsApp Image 2026-02-22 at 10.54.09.jpeg">
+        <img src="WhatsApp Image 2026-02-22 at 10.54.09.jpeg" alt="Imagem 1">
       </div>
       <div class="carousel-slide">
-        <img src="WhatsApp Image 2026-02-22 at 11.28.04.jpeg">
+        <img src="WhatsApp Image 2026-02-22 at 11.28.04.jpeg" alt="Imagem 2">
       </div>
       <div class="carousel-slide">
-        <img src="WhatsApp Image 2026-02-25 at 18.57.39.jpeg">
+        <img src="WhatsApp Image 2026-02-25 at 18.57.39.jpeg" alt="Imagem 3">
       </div>
       <div class="carousel-slide">
-        <img src="WhatsApp Image 2026-02-25 at 18.58.12.jpeg">
+        <img src="WhatsApp Image 2026-02-25 at 18.58.12.jpeg" alt="Imagem 4">
       </div>
     </div>
 
@@ -181,22 +191,23 @@
 
   <!-- FRASES -->
   <div class="mensagens-container">
-    <div class="frase-apoio">Mesmo nos dias difíceis, você não está sozinha 🌷</div>
+    <div class="frase-apoio">
+      Mesmo nos dias difíceis, lembre-se: você não está sozinha 🌷
+    </div>
   </div>
 
   <!-- BOTÕES -->
   <div class="buttons-container">
-    <button class="btn-mensagem" onclick="mostrarMensagem()">💌 Clique</button>
-    <button class="btn-fogos" onclick="criarFogos()">🎆 Fogos</button>
+    <button class="btn-mensagem" onclick="mostrarMensagem()">💌 Clique para uma mensagem especial</button>
+    <button class="btn-fogos" onclick="criarFogos()">🎆 Solte Fogos de Alegria!</button>
   </div>
 
   <div id="mensagem"></div>
-
 </div>
 
-<!-- SEU JS ORIGINAL CONTINUA NORMAL -->
+<!-- SEU JS ORIGINAL SEGUE NORMAL -->
 <script>
-/* seu JS original aqui sem mudanças */
+/* NÃO ALTERADO */
 </script>
 
 </body>
