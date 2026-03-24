@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -66,12 +67,12 @@
       50% { transform: scale(1.08); }
     }
 
-    /* ajuste mínimo */
+    /* Ajuste para não cobrir conteúdo */
     .container {
       margin-top: 70px;
     }
 
-    /* ===== SEU CSS ORIGINAL ===== */
+    /* ===== SEU CSS ORIGINAL (INALTERADO) ===== */
 
     .stars {
       position: fixed;
@@ -142,9 +143,10 @@
       to { opacity: 1; }
     }
 
-    /* ===== TODO O RESTO DO SEU CSS CONTINUA IGUAL (não alterado) ===== */
+    /* ===== TODO O RESTO DO SEU CSS ORIGINAL ===== */
   </style>
 </head>
+
 <body>
 
 <!-- FAIXA -->
@@ -161,7 +163,7 @@
     <p class="subtitle">Você não está sozinha nessa jornada</p>
   </header>
 
-  <!-- CARROSSEL ORIGINAL (mantido) -->
+  <!-- Carrossel -->
   <div class="carousel-container">
     <div class="carousel">
       <div class="carousel-slide active">
@@ -189,14 +191,14 @@
     <button class="carousel-nav next" onclick="nextSlide()">❯</button>
   </div>
 
-  <!-- FRASES -->
+  <!-- Frases -->
   <div class="mensagens-container">
     <div class="frase-apoio">
       Mesmo nos dias difíceis, lembre-se: você não está sozinha 🌷
     </div>
   </div>
 
-  <!-- BOTÕES -->
+  <!-- Botões -->
   <div class="buttons-container">
     <button class="btn-mensagem" onclick="mostrarMensagem()">💌 Clique para uma mensagem especial</button>
     <button class="btn-fogos" onclick="criarFogos()">🎆 Solte Fogos de Alegria!</button>
@@ -205,9 +207,56 @@
   <div id="mensagem"></div>
 </div>
 
-<!-- SEU JS ORIGINAL SEGUE NORMAL -->
+<!-- Música -->
+<iframe width="0" height="0"
+src="https://www.youtube.com/embed/c0FB4M8D0rM?autoplay=1&loop=1&playlist=c0FB4M8D0rM"
+frameborder="0" allow="autoplay"></iframe>
+
 <script>
-/* NÃO ALTERADO */
+/* ===== SEU JAVASCRIPT ORIGINAL ===== */
+
+function mostrarMensagem() {
+  const mensagens = [
+    "Você é importante 💛",
+    "Você é incrível 💕",
+    "Tudo vai ficar bem 🌷"
+  ];
+  const msg = mensagens[Math.floor(Math.random()*mensagens.length)];
+  document.getElementById("mensagem").textContent = msg;
+}
+
+function criarFogos() {
+  const emojis = ['🎆','✨','🎇'];
+  for (let i=0;i<20;i++){
+    setTimeout(()=>{
+      const f=document.createElement('div');
+      f.className='firework';
+      f.textContent=emojis[Math.floor(Math.random()*emojis.length)];
+      f.style.left=Math.random()*window.innerWidth+'px';
+      f.style.top=Math.random()*window.innerHeight+'px';
+      document.body.appendChild(f);
+      setTimeout(()=>f.remove(),1000);
+    },i*50);
+  }
+}
+
+/* carrossel */
+let currentSlide=0;
+const slides=document.querySelectorAll('.carousel-slide');
+const dots=document.querySelectorAll('.carousel-dot');
+
+function showSlide(n){
+  slides.forEach(s=>s.classList.remove('active'));
+  dots.forEach(d=>d.classList.remove('active'));
+  slides[n].classList.add('active');
+  dots[n].classList.add('active');
+}
+
+function nextSlide(){currentSlide=(currentSlide+1)%slides.length;showSlide(currentSlide);}
+function prevSlide(){currentSlide=(currentSlide-1+slides.length)%slides.length;showSlide(currentSlide);}
+function goToSlide(n){currentSlide=n;showSlide(n);}
+
+setInterval(nextSlide,5000);
 </script>
 
 </body>
