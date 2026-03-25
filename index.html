@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -67,39 +66,8 @@
       50% { transform: scale(1.08); }
     }
 
-    /* Ajuste para não cobrir conteúdo */
     .container {
       margin-top: 70px;
-    }
-
-    /* ===== SEU CSS ORIGINAL (INALTERADO) ===== */
-
-    .stars {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    .star {
-      position: absolute;
-      width: 2px;
-      height: 2px;
-      background: white;
-      border-radius: 50%;
-      opacity: 0.8;
-    }
-
-    .constellation-line {
-      position: absolute;
-      background: rgba(255, 255, 255, 0.3);
-      pointer-events: none;
-    }
-
-    .container {
       max-width: 800px;
       margin: 70px auto 0;
       position: relative;
@@ -112,14 +80,8 @@
     }
 
     @keyframes slideDown {
-      from {
-        opacity: 0;
-        transform: translateY(-30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     h1 {
@@ -143,19 +105,163 @@
       to { opacity: 1; }
     }
 
-    /* ===== TODO O RESTO DO SEU CSS ORIGINAL ===== */
+    /* ===== CARROSSEL MELHORADO ===== */
+    .carousel-container {
+      position: relative;
+      width: 100%;
+      max-width: 600px;
+      margin: 30px auto;
+      overflow: hidden;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      background: white;
+    }
+
+    .carousel {
+      display: flex;
+      transition: transform 0.6s ease-in-out;
+    }
+
+    .carousel-slide {
+      min-width: 100%;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      position: absolute;
+    }
+
+    .carousel-slide.active {
+      opacity: 1;
+      position: relative;
+    }
+
+    .carousel-slide img {
+      width: 100%;
+      height: 350px;
+      object-fit: cover;
+      border-radius: 20px;
+    }
+
+    /* overlay suave */
+    .carousel-slide::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 40%;
+      background: linear-gradient(to top, rgba(0,0,0,0.4), transparent);
+      border-radius: 20px;
+    }
+
+    /* setas */
+    .carousel-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255,255,255,0.8);
+      border: none;
+      font-size: 24px;
+      padding: 10px;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .carousel-nav:hover {
+      background: #fff;
+      transform: translateY(-50%) scale(1.1);
+    }
+
+    .prev { left: 10px; }
+    .next { right: 10px; }
+
+    /* dots */
+    .carousel-controls {
+      position: absolute;
+      bottom: 10px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .carousel-dot {
+      width: 10px;
+      height: 10px;
+      background: rgba(255,255,255,0.6);
+      border-radius: 50%;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .carousel-dot.active {
+      background: #fff;
+      transform: scale(1.3);
+    }
+
+    /* ===== BOTÕES MELHORADOS ===== */
+    .buttons-container {
+      margin-top: 25px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      align-items: center;
+    }
+
+    button {
+      border: none;
+      padding: 14px 22px;
+      font-size: 1rem;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 600;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+    }
+
+    .btn-mensagem {
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      color: #333;
+    }
+
+    .btn-fogos {
+      background: linear-gradient(135deg, #a18cd1, #fbc2eb);
+      color: #333;
+    }
+
+    button:hover {
+      transform: translateY(-3px) scale(1.03);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+
+    #mensagem {
+      margin-top: 15px;
+      font-size: 1.2rem;
+      color: #1e5a96;
+      font-weight: bold;
+      min-height: 30px;
+    }
+
+    .firework {
+      position: fixed;
+      font-size: 24px;
+      animation: explode 1s ease-out forwards;
+      pointer-events: none;
+    }
+
+    @keyframes explode {
+      0% { transform: scale(0); opacity: 1; }
+      100% { transform: scale(2); opacity: 0; }
+    }
+
   </style>
 </head>
 
 <body>
 
-<!-- FAIXA -->
 <div class="top-banner">
   <span>Sabrina ✨</span>
 </div>
-
-<!-- Constelação -->
-<div class="stars" id="constellation"></div>
 
 <div class="container">
   <header>
@@ -167,18 +273,21 @@
   <div class="carousel-container">
     <div class="carousel">
       <div class="carousel-slide active">
-        <img src="WhatsApp Image 2026-02-22 at 10.54.09.jpeg" alt="Imagem 1">
+        <img src="WhatsApp Image 2026-02-22 at 10.54.09.jpeg">
       </div>
       <div class="carousel-slide">
-        <img src="WhatsApp Image 2026-02-22 at 11.28.04.jpeg" alt="Imagem 2">
+        <img src="WhatsApp Image 2026-02-22 at 11.28.04.jpeg">
       </div>
       <div class="carousel-slide">
-        <img src="WhatsApp Image 2026-02-25 at 18.57.39.jpeg" alt="Imagem 3">
+        <img src="WhatsApp Image 2026-02-25 at 18.57.39.jpeg">
       </div>
       <div class="carousel-slide">
-        <img src="WhatsApp Image 2026-02-25 at 18.58.12.jpeg" alt="Imagem 4">
+        <img src="WhatsApp Image 2026-02-25 at 18.58.12.jpeg">
       </div>
     </div>
+
+    <button class="carousel-nav prev" onclick="prevSlide()">❮</button>
+    <button class="carousel-nav next" onclick="nextSlide()">❯</button>
 
     <div class="carousel-controls">
       <div class="carousel-dot active" onclick="goToSlide(0)"></div>
@@ -186,19 +295,8 @@
       <div class="carousel-dot" onclick="goToSlide(2)"></div>
       <div class="carousel-dot" onclick="goToSlide(3)"></div>
     </div>
-
-    <button class="carousel-nav prev" onclick="prevSlide()">❮</button>
-    <button class="carousel-nav next" onclick="nextSlide()">❯</button>
   </div>
 
-  <!-- Frases -->
-  <div class="mensagens-container">
-    <div class="frase-apoio">
-      Mesmo nos dias difíceis, lembre-se: você não está sozinha 🌷
-    </div>
-  </div>
-
-  <!-- Botões -->
   <div class="buttons-container">
     <button class="btn-mensagem" onclick="mostrarMensagem()">💌 Clique para uma mensagem especial</button>
     <button class="btn-fogos" onclick="criarFogos()">🎆 Solte Fogos de Alegria!</button>
@@ -207,14 +305,7 @@
   <div id="mensagem"></div>
 </div>
 
-<!-- Música -->
-<iframe width="0" height="0"
-src="https://www.youtube.com/embed/c0FB4M8D0rM?autoplay=1&loop=1&playlist=c0FB4M8D0rM"
-frameborder="0" allow="autoplay"></iframe>
-
 <script>
-/* ===== SEU JAVASCRIPT ORIGINAL ===== */
-
 function mostrarMensagem() {
   const mensagens = [
     "Você é importante 💛",
@@ -240,7 +331,6 @@ function criarFogos() {
   }
 }
 
-/* carrossel */
 let currentSlide=0;
 const slides=document.querySelectorAll('.carousel-slide');
 const dots=document.querySelectorAll('.carousel-dot');
